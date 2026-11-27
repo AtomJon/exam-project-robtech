@@ -34,19 +34,8 @@ void setup()
   delay(500);
 }
 
-void loop()
-{
-  readSensors();
-  
-  if (!isInsideMaze)
-    loopFindMaze();
-  }
-  else {
-    loopSolveMaze();
-  }
-}
-
 void loopFindMaze() {
+  motors.setSpeeds(200, 200);
   if (leftBlocked || frontBlocked || rightBlocked)
   {
     motors.setSpeeds(0, 0);
@@ -117,4 +106,14 @@ void backAndTurn90()
   delay(1500);                       // for 1500 ms
 
   motors.setSpeeds(0, 0);            // stop
+}
+
+void loop()
+{
+  readSensors();
+  
+  if (!isInsideMaze) 
+    loopFindMaze();
+  else 
+    loopSolveMaze();
 }
